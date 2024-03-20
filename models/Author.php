@@ -35,7 +35,7 @@ class Author {
     }
 
     public function create() {
-      $query = 'INSERT INTO ' . $this->table_name . ' SET author = :author';
+      $query = "INSERT INTO $this->table_name SET author = :author";
       $stmt = $this->conn->prepare($query);
 
       $stmt->bindParam(':author', $this->author);
@@ -43,7 +43,7 @@ class Author {
       if($stmt->execute()) {
         return true;
       }
-      
+
       printf("Error: %s.\n", $stmt->error);
     
       return false;
@@ -68,7 +68,7 @@ class Author {
     }
 
     public function delete() {
-        $query = 'DELETE FROM ' . $this->table_name . ' WHERE id = :id';
+        $query = "DELETE FROM $this->table_name WHERE id = :id";
         $stmt = $this->conn->prepare($query);
 
         $this->id = htmlspecialchars(strip_tags($this->id));

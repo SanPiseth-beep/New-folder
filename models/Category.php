@@ -35,7 +35,7 @@ class Category {
     }
 
     public function create() {
-      $query = 'INSERT INTO ' . $this->table_name . ' SET category = :category';
+      $query = "INSERT INTO  $this->table_name SET category = :category";
       $stmt = $this->conn->prepare($query);
       $stmt->bindParam(':category', $this->category);
     
@@ -67,7 +67,7 @@ class Category {
     }
 
     public function delete() {
-        $query = 'DELETE FROM ' . $this->table_name . ' WHERE id = :id';
+        $query = "DELETE FROM $this->table_name WHERE id = :id";
         $stmt = $this->conn->prepare($query);
 
         $this->id = htmlspecialchars(strip_tags($this->id));

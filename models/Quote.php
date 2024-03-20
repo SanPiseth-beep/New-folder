@@ -79,7 +79,7 @@ class Quote {
 
     public function create() {
       // Create query
-      $query = 'INSERT INTO ' . $this->table_name . ' SET quote = :quote, author_id = :author_id, category_id = :category_id';
+      $query = "INSERT INTO $this->table_name SET quote = :quote, author_id = :author_id, category_id = :category_id";
     
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -125,7 +125,7 @@ class Quote {
     }
 
     public function delete() {
-        $query = 'DELETE FROM ' . $this->table_name . ' WHERE id = :id';
+        $query = "DELETE FROM $this->table_name WHERE id = :id";
         $stmt = $this->conn->prepare($query);
 
         $this->id = htmlspecialchars(strip_tags($this->id));
