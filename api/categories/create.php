@@ -28,7 +28,18 @@
   // Set category data
   $cat->category = $data->category;
 
+
   // Create category and return the result
   if($cat->create()) {
-    echo json_encode(array('id' => $db->lastInsertId(), 'category' => $cat->category));
+    // Get the last inserted id
+    $cat->id = $db->lastInsertId();
+    $cat_arr = array(
+      'id' => $cat->id,
+      'category' => $cat->category
+  );
+
+    // Encode category details to JSON and output
+    echo json_encode($cat_arr);
+  } else {
+    echo json_encode(array('message' => 'Category not created'));
   }

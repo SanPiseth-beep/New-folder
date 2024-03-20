@@ -35,18 +35,18 @@ class Author {
     }
 
     public function create() {
-        $query = "INSERT INTO $this->table_name (author) VALUES (:author)";
-        $stmt = $this->conn->prepare($query);
+      $query = 'INSERT INTO ' . $this->table_name . ' SET author = :author';
+      $stmt = $this->conn->prepare($query);
 
-        $this->author = htmlspecialchars(strip_tags($this->author));
-        $stmt->bindParam(':author', $this->author);
+      $stmt->bindParam(':author', $this->author);
 
-        if($stmt->execute()) {
-            return true;
-        }
-
-        printf("Error: %s.\n", $stmt->error);
-        return false;
+      if($stmt->execute()) {
+        return true;
+      }
+      
+      printf("Error: %s.\n", $stmt->error);
+    
+      return false;
     }
 
     public function update() {

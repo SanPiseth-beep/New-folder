@@ -54,14 +54,17 @@
 
   // Create quote and return the result
   if($quo->create()) {
+    // Get the last inserted id
     $quo->id = $db->lastInsertId();
     $quo_arr = array(
       'id' => $quo->id,
       'quote' => $quo->quote,
       'author_id' => $quo->author_id,
-      'category_id' => $quo->category_id,
+      'category_id' => $quo->category_id
     );
+
+    // Encode quote details to JSON and output
     echo json_encode($quo_arr);
   } else {
-    echo json_encode(array('message' => 'Quote Not Created'));
+    echo json_encode(array('message' => 'Quote not created'));
   }

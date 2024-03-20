@@ -35,18 +35,17 @@ class Category {
     }
 
     public function create() {
-        $query = "INSERT INTO $this->table_name (category) VALUES (:category)";
-        $stmt = $this->conn->prepare($query);
-
-        $this->category = htmlspecialchars(strip_tags($this->category));
-        $stmt->bindParam(':category', $this->category);
-
-        if($stmt->execute()) {
-            return true;
-        }
-
-        printf("Error: %s.\n", $stmt->error);
-        return false;
+      $query = 'INSERT INTO ' . $this->table_name . ' SET category = :category';
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':category', $this->category);
+    
+      if($stmt->execute()) {
+        return true;
+      }
+    
+      printf("Error: %s.\n", $stmt->error);
+    
+      return false;
     }
 
     public function update() {
