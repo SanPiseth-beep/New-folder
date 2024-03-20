@@ -50,7 +50,7 @@ class Author {
     }
 
     public function update() {
-        $query = "UPDATE $this->table_name SET author = :author WHERE id = :id";
+        $query = "UPDATE $this->table_name (author) VALUES (:author);";
         $stmt = $this->conn->prepare($query);
 
         $this->author = htmlspecialchars(strip_tags($this->author));

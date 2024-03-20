@@ -49,7 +49,7 @@ class Category {
     }
 
     public function update() {
-        $query = "UPDATE $this->table_name SET category = :category WHERE id = :id";
+        $query = "UPDATE $this->table_name (category) VALUES (:category);";
         $stmt = $this->conn->prepare($query);
 
         $this->category = htmlspecialchars(strip_tags($this->category));
