@@ -35,7 +35,7 @@ class Author {
     }
 
     public function create() {
-      $query = "INSERT INTO $this->table_name SET author = :author";
+      $query = "INSERT INTO $this->table_name (author) VALUES (:author);";
       $stmt = $this->conn->prepare($query);
 
       $stmt->bindParam(':author', $this->author);
@@ -50,7 +50,7 @@ class Author {
     }
 
     public function update() {
-        $query = 'UPDATE ' . $this->table_name . ' (author) VALUES (:author)';
+        $query = "UPDATE $this->table_name SET author = :author WHERE id = :id";
         $stmt = $this->conn->prepare($query);
 
         $this->author = htmlspecialchars(strip_tags($this->author));
@@ -68,7 +68,7 @@ class Author {
     }
 
     public function delete() {
-        $query = "DELETE FROM $this->table_name WHERE id = :id";
+        $query = 'DELETE FROM ' . $this->table_name . ' WHERE id = :id';
         $stmt = $this->conn->prepare($query);
 
         $this->id = htmlspecialchars(strip_tags($this->id));

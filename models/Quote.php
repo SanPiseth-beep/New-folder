@@ -79,7 +79,7 @@ class Quote {
 
     public function create() {
       // Create query
-      $query = 'INSERT INTO ' . $this->table_name . ' (quote, author_id, category_id) VALUES (:quote, :author_id, :category_id)';
+      $query = "INSERT INTO $this->table_name (quote, author_id, category_id) VALUES (:quote, :author_id, :category_id)";
     
       // Prepare statement
       $stmt = $this->conn->prepare($query);
